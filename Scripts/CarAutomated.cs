@@ -35,6 +35,27 @@ public class CarAutomated : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<TrafficLight>() != null)
-            isMoving = false;
+            traffic_light_object = other.gameObject.GetComponent<TrafficLight>();
+            if (traffic_light_object.greenLight)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
+            
+
+        if (other.gameObject.GetComponent<CarAutomated>() != null)
+            car_object = other.gameObject.GetComponent<CarAutomated>();
+            if (car_object.isMoving)
+            {
+                speed = car_object.isMoving;
+            }
+            else
+            {
+                isMoving = false;
+            }
+
     }
 }
